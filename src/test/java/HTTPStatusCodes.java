@@ -1,6 +1,8 @@
-import org.testng.annotations.*;
+import io.restassured.RestAssured;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
+import static io.restassured.config.RedirectConfig.redirectConfig;
 
 
 public class HTTPStatusCodes {
@@ -35,6 +37,7 @@ public class HTTPStatusCodes {
 
                         .pathParam("code", "301")
                         .log().uri()
+                        .config(RestAssured.config().redirect(redirectConfig().followRedirects(false)))
 
                         .when()
                         .get("http://the-internet.herokuapp.com/status_codes/{code}")
@@ -80,7 +83,6 @@ public class HTTPStatusCodes {
                         .get("http://the-internet.herokuapp.com/status_codes/{code}")
 
                         .then()
-                        .log().status()
                         .statusCode(500)
                         .extract().statusCode();
 
