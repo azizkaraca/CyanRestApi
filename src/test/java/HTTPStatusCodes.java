@@ -10,18 +10,19 @@ public class HTTPStatusCodes {
     @Test(priority = 1)
     public void code200assertion() {
 
-        code=
-        given()
+        code =
+                given()
 
-                .pathParam("code", "200")
-                .log().uri()
+                        .pathParam("code", "200")
+                        .log().uri()
 
-                .when()
-                .get("http://the-internet.herokuapp.com/status_codes/{code}")
+                        .when()
+                        .get("http://the-internet.herokuapp.com/status_codes/{code}")
 
-                .then()
-                .statusCode(200)
-                .extract().statusCode();
+                        .then()
+                        .log().status()
+                        .statusCode(200)
+                        .extract().statusCode();
 
         System.out.println("code = " + code);
     }
@@ -29,7 +30,7 @@ public class HTTPStatusCodes {
     @Test(priority = 2)
     public void Code301assertion() {
 
-        code=
+        code =
                 given()
 
                         .pathParam("code", "301")
@@ -39,46 +40,49 @@ public class HTTPStatusCodes {
                         .get("http://the-internet.herokuapp.com/status_codes/{code}")
 
                         .then()
+                        .log().status()
                         .statusCode(301)
                         .extract().statusCode();
 
         System.out.println("code = " + code);
     }
 
-    @Test (priority = 3)
+    @Test(priority = 3)
     public void Code404assertion() {
 
-        code=
-        given()
+        code =
+                given()
 
-                .pathParam("code", "404")
-                .log().uri()
+                        .pathParam("code", "404")
+                        .log().uri()
 
-                .when()
-                .get("http://the-internet.herokuapp.com/status_codes/{code}")
+                        .when()
+                        .get("http://the-internet.herokuapp.com/status_codes/{code}")
 
-                .then()
-                .statusCode(404)
-                .extract().statusCode();
+                        .then()
+                        .log().status()
+                        .statusCode(404)
+                        .extract().statusCode();
 
         System.out.println("code = " + code);
     }
 
-    @Test (priority = 4)
+    @Test(priority = 4)
     public void Code500assertion() {
 
-        code=
-        given()
+        code =
+                given()
 
-                .pathParam("code", "500")
-                .log().uri()
+                        .pathParam("code", "500")
+                        .log().uri()
 
-                .when()
-                .get("http://the-internet.herokuapp.com/status_codes/{code}")
+                        .when()
+                        .get("http://the-internet.herokuapp.com/status_codes/{code}")
 
-                .then()
-                .statusCode(500)
-                .extract().statusCode();
+                        .then()
+                        .log().status()
+                        .statusCode(500)
+                        .extract().statusCode();
 
         System.out.println("code = " + code);
     }
